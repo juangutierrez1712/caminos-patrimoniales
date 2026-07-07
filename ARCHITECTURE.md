@@ -55,4 +55,3 @@ SplashScreen → RouteList → RoutePreview → ARNavigation
 **`RouteCard.cs`** — Puebla una tarjeta individual y navega a `RoutePreview` al seleccionarla.
 
 **`RoutePreviewController.cs`** — Muestra el resumen del recorrido elegido y la lista ordenada de sus POIs (consultando el Feature Service correspondiente). El botón "Iniciar" resetea `POIManager` al primer POI y navega a `ARNavigation`.
-
