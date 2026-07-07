@@ -41,8 +41,23 @@ public class DebugGPS : MonoBehaviour
                        $"Compás: {LocationManager.Instance.Heading:F1}°" +
                        waypointInfo;
 
-        string poiInfo = POIManager.Instance != null && POIManager.Instance.IsLoaded ? $"\nPOIs cargados: {POIManager.Instance.POIs.Count}\nActual: {POIManager.Instance.CurrentPOI?.nombre} ({POIManager.Instance.CurrentIndex + 1}/{POIManager.Instance.POIs.Count})": "\nPOIs: cargando...";
+        string poiInfo = POIManager.Instance != null && POIManager.Instance.IsLoaded ? $"\nPOIs cargados: {POIManager.Instance.POIs.Count}\nActual: {POIManager.Instance.CurrentPOI?.nombre} ({POIManager.Instance.CurrentIndex + 1}/{POIManager.Instance.POIs.Count})" : "\nPOIs: cargando...";
         gpsText.text += poiInfo;
 
+        // ── Debug de RouteService ──
+        string routeInfo;
+        if (RouteService.Instance == null)
+        {
+            routeInfo = "\nRouteService: NULL (falta agregar el componente)";
+        }
+        else if (RouteService.Instance.HasRoute)
+        {
+            routeInfo = $"\nRuta: {RouteService.Instance.RoutePoints.Count} pts, {RouteService.Instance.Maneuvers.Count} maniobras";
+        }
+        else
+        {
+            routeInfo = "\nRuta: NO CARGADA (revisa red/API key)";
+        }
+        gpsText.text += routeInfo;
     }
 }

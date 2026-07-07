@@ -56,20 +56,3 @@ SplashScreen → RouteList → RoutePreview → ARNavigation
 
 **`RoutePreviewController.cs`** — Muestra el resumen del recorrido elegido y la lista ordenada de sus POIs (consultando el Feature Service correspondiente). El botón "Iniciar" resetea `POIManager` al primer POI y navega a `ARNavigation`.
 
-## Otros
-
-**`Billboard.cs`** — Utilidad genérica: hace que cualquier objeto (el waypoint teal, por ejemplo) siempre mire de frente a la cámara.
-
-**`SplashController.cs`** / **`TestButton.cs`** — Pantalla inicial y utilidad de depuración de clicks, respectivamente. `TestButton.cs` es probablemente descartable en una build final.
-
-## Convención de código
-
-Cuando un script usa `using System;` junto con `UnityEngine`, se agrega `using Debug = UnityEngine.Debug;` para evitar el error de ambigüedad `CS0104` entre `UnityEngine.Debug` y `System.Diagnostics.Debug`.
-
-## Deuda técnica conocida (a la fecha de este documento)
-
-- Radio de activación del pin (`POIPinController.activationRadius`) en valor de prueba, no de producción.
-- `MinimapFollow.cs` y `MarkerFollow.cs` posiblemente obsoletos tras la migración a tiles de OSM.
-- Secuencialidad completa de los 8 POIs (avanzar el pin activo al presionar "Siguiente") en construcción.
-- Ruta real por calles (en vez de línea recta) pendiente, tanto en el minimapa como en la flecha de dirección en cámara.
-- `RouteListController` no carga recorridos desde AGOL todavía.

@@ -35,18 +35,47 @@ public class PathProjector : MonoBehaviour
             poi.latitude, poi.longitude
         );
 
+        // Pedir/actualizar la ruta real caminable si hace falta
+        if (RouteService.Instance != null)
+        {
+            if (RouteService.Instance.NeedsRecalculation(
+                    LocationManager.Instance.Latitude, LocationManager.Instance.Longitude,
+                    poi.latitude, poi.longitude))
+            {
+                RouteService.Instance.RequestRoute(
+                    LocationManager.Instance.Latitude, LocationManager.Instance.Longitude,
+                    poi.latitude, poi.longitude);
+            }
+        }
+
         if (distanceToTarget > 20f)
-        {
             ShowDots(poi.latitude, poi.longitude);
-        }
         else
-        {
             HideDots();
-        }
     }
 
-    void ShowDots(double targetLat, double targetLon)
+    void ShowDots(double fallbackLat, double fallbackLon)
     {
+        double targetLat = fallbackLat;
+        double targetLon = fallbackLon;
+
+        // Si ya hay ruta real calculada, apuntamos a un punto un poco
+        // adelante siguiendo la polilínea real, no directo al POI en línea recta
+        if (RouteService.Instance != null)
+        {
+            GeoPoint? lookahead = RouteService.Instance.GetLookaheadTarget(
+                LocationManager.Instance.Latitude,
+                LocationManager.Instance.Longitude,
+                10f
+            );
+
+            if (lookahead.HasValue)
+            {
+                targetLat = lookahead.Value.lat;
+                targetLon = lookahead.Value.lon;
+            }
+        }
+
         float bearing = (float)CalculateBearing(
             LocationManager.Instance.Latitude,
             LocationManager.Instance.Longitude,
@@ -65,7 +94,6 @@ public class PathProjector : MonoBehaviour
         for (int i = 0; i < dotCount; i++)
         {
             float distance = (i + 1) * dotSpacing;
-            // Los puntos más lejanos se hacen más pequeños
             float scale = Mathf.Lerp(0.35f, 0.15f, (float)i / dotCount);
 
             Vector3 pos = cam.position + direction * distance;

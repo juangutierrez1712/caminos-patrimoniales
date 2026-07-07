@@ -151,6 +151,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1656718294}
   - {fileID: 438939693}
   - {fileID: 1398546294}
   m_Father: {fileID: 1110700808}
@@ -237,6 +238,7 @@ GameObject:
   - component: {fileID: 46521525}
   - component: {fileID: 46521526}
   - component: {fileID: 46521527}
+  - component: {fileID: 46521528}
   m_Layer: 0
   m_Name: ArcGISMap
   m_TagString: Untagged
@@ -408,6 +410,20 @@ MonoBehaviour:
   poiPinPrefab: {fileID: 7270842740784800577, guid: 649a44ee78c0e604bbcd29542133da7e, type: 3}
   activationRadius: 12000
   pinHeight: 0.3
+--- !u!114 &46521528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46521520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 999f70636d0b32d469630d1dceb84ad4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RouteService
+  apiKey: AAPTaBO1mlwWaBpZ3OyvPeBgVXw..rwp2-CW1Zti_NGhT9bLY280oTrQWKG3FLZi3WnY4QXl5QQVXzr0u_L7qv7w9SbD2tF2eoaa5Nd-xqAuf1NLXJDcohK7iRKugTdfLVZu8ojyh63PiiG1Bgi2ZAhmJUutvkrMj7qzW5fe1G2ZJM6LWa0Y-C6m5CmtucORIvbTGGxetYOlVWDAyole4gpSh0pcl2LxQcDtQDVLDtjBTrsfEvhUjEIpr_HLBiUTJmQE3Kga2c0rx9tfeX3CAQQ..AT1_p4WvMPqd
+  deviationThresholdMeters: 18
 --- !u!1 &54825502
 GameObject:
   m_ObjectHideFlags: 0
@@ -2834,6 +2850,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482945496}
   m_CullTransparentMesh: 1
+--- !u!1 &1656718293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1656718294}
+  - component: {fileID: 1656718295}
+  m_Layer: 5
+  m_Name: RouteOverlayContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1656718294
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656718293}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 31039691}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1656718295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656718293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f82e6481bd4962949a1d6f18dbd9034b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinimapRouteOverlay
+  segmentContainer: {fileID: 1656718294}
+  segmentPrefab: {fileID: 8062031139322478346, guid: 4f0f77215c5d07b409e9e8c6213301c0, type: 3}
+  lineColor: {r: 0, g: 0.706, b: 0.847, a: 1}
+  lineThickness: 4
+  maxDrawRadiusPixels: 140
+  maxSegments: 60
+  mapPixelScale: 1
 --- !u!1 &1703001053
 GameObject:
   m_ObjectHideFlags: 0
