@@ -40,7 +40,7 @@ docs/
 └── SETUP.md           → (opcional) pasos detallados de instalación del entorno
 ```
 
-## ⚠️ Seguridad — antes de subir a GitHub
+## Seguridad — antes de subir a GitHub
 
 Este proyecto usa una **API key de ArcGIS** configurada en `Project Settings → ArcGIS Maps SDK → API Key`. Esa clave queda guardada en un asset dentro de `ProjectSettings/`. Antes del primer commit:
 
@@ -60,7 +60,3 @@ Tema: patrimonio hídrico. Datos servidos desde ArcGIS Online (`POIs_CaminosPatr
 6. Acueducto de Bogotá
 7. Calle de las Violetas
 8. Eje Ambiental
-
-## Licencia
-
-(Definir según lo que decida el equipo / Esri Colombia — por ejemplo MIT para el código, con nota de que los datos de AGOL pertenecen a la organización).
