@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Android;
 using Debug = UnityEngine.Debug;
@@ -8,11 +7,17 @@ public class LocationManager : MonoBehaviour
 {
     public static LocationManager Instance { get; private set; }
 
+    [Header("Suavizado de brújula")]
+    [SerializeField] private float headingSmoothingSpeed = 4f; // más alto = responde más rápido, menos suave
+
     public double Latitude { get; private set; }
     public double Longitude { get; private set; }
     public float Accuracy { get; private set; }
     public bool IsReady { get; private set; }
-    public float Heading => Input.compass.trueHeading;  // ← NUEVO
+    public float Heading => smoothedHeading;
+
+    private float smoothedHeading = 0f;
+    private bool headingInitialized = false;
 
     private void Awake()
     {
@@ -43,7 +48,7 @@ public class LocationManager : MonoBehaviour
         }
 
         Input.location.Start(5f, 2f);
-        Input.compass.enabled = true;  // ← NUEVO
+        Input.compass.enabled = true;
 
         int maxWait = 30;
         while (Input.location.status == LocationServiceStatus.Initializing && maxWait > 0)
@@ -66,10 +71,24 @@ public class LocationManager : MonoBehaviour
     private void Update()
     {
         if (!IsReady) return;
+
         var data = Input.location.lastData;
         Latitude = data.latitude;
         Longitude = data.longitude;
         Accuracy = data.horizontalAccuracy;
+
+        // ── Suavizado de la brújula ──
+        float rawHeading = Input.compass.trueHeading;
+
+        if (!headingInitialized)
+        {
+            smoothedHeading = rawHeading;
+            headingInitialized = true;
+        }
+        else
+        {
+            smoothedHeading = Mathf.LerpAngle(smoothedHeading, rawHeading, headingSmoothingSpeed * Time.deltaTime);
+        }
     }
 
     private void OnDestroy()

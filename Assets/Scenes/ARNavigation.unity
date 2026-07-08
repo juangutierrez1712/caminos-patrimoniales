@@ -368,6 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf62b11af2615d40bab909477a17268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocationManager
+  headingSmoothingSpeed: 4
 --- !u!114 &46521525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1340,9 +1341,9 @@ RectTransform:
   - {fileID: 2030120043}
   - {fileID: 2064978894}
   - {fileID: 1819565118}
-  - {fileID: 734955440}
   - {fileID: 736439924}
   - {fileID: 1703001054}
+  - {fileID: 734955440}
   m_Father: {fileID: 1110700808}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
